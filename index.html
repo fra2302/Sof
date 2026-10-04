@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per Noi, Amore Mio ❤</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: radial-gradient(circle at top, #ffb6c1, #ff9a9e, #fad0c4);
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        audio { display: none; }
+
+        /* --- TESTO LETTERA PER LETTERA --- */
+        #typewriter {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            text-align: center;
+            margin-top: 40px;
+            white-space: pre-wrap;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SFONDO GALASSIA --- */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            background: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.25;
+            animation: starMove 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes starMove {
+            from { transform: scale(1); }
+            to { transform: scale(1.3); }
+        }
+
+        /* --- CADUTA PETALI + CUORI + ROSE + FIORI --- */
+        .falling {
+            position: fixed;
+            top: -60px;
+            font-size: 45px;
+            pointer-events: none;
+            animation: fallingAnim linear forwards;
+        }
+
+        @keyframes fallingAnim {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- SLIDESHOW --- */
+        .slideshow {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+            border-radius: 25px;
+            box-shadow: 0 0 25px rgba(255, 0, 80, 0.4);
+        }
+
+        .slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: slideShow 20s infinite;
+        }
+
+        .slideshow img:nth-child(1) { animation-delay: 0s; }
+        .slideshow img:nth-child(2) { animation-delay: 5s; }
+        .slideshow img:nth-child(3) { animation-delay: 10s; }
+        .slideshow img:nth-child(4) { animation-delay: 15s; }
+
+        @keyframes slideShow {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* --- GALLERIA --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            animation: zoomSoft 8s ease-in-out infinite;
+        }
+
+        @keyframes zoomSoft {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        .photo-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            animation: sparkle 3s infinite;
+            pointer-events: none;
+        }
+
+        #specialMessage {
+            text-align: center;
+            font-size: 2em;
+            margin: 40px 0;
+            display: none;
+            animation: fadeIn 2s ease forwards;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .love-button {
+            display: block;
+            margin: 40px auto;
+            padding: 15px 30px;
+            background: #ff4b6e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .love-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- VERSIONE MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+
+            #typewriter {
+                font-size: 2em;
+                margin-top: 20px;
+                padding: 0 10px;
+            }
+
+            .slideshow {
+                height: 300px;
+                border-radius: 15px;
+            }
+
+            .photo-card img {
+                height: 180px;
+            }
+
+            .love-button {
+                width: 80%;
+                font-size: 1.1em;
+            }
+
+            #specialMessage {
+                font-size: 1.5em;
+                padding: 0 15px;
+            }
+
+            .falling {
+                font-size: 35px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+ <!-- MUSICA PINO DANIELE -->
+<audio id="bgmusic" autoplay loop playsinline>
+    <source src="audio/pino.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const audio = document.getElementById('bgmusic');
+
+// Tentativo immediato (PC + Android)
+window.addEventListener('load', () => {
+    audio.volume = 1;
+    audio.play().catch(() => {});
+});
+
+// Sblocco iPhone (touch)
+document.addEventListener('touchstart', () => {
+    audio.play().catch(() => {});
+}, { once: true });
+
+// Sblocco iPhone (click)
+document.addEventListener('click', () => {
+    audio.play().catch(() => {});
+}, { once: true });
+</script>
+
+
+    <!-- SFONDO GALASSIA -->
+    <div class="stars"></div>
+
+    <!-- TESTO LETTERA PER LETTERA -->
+    <div id="typewriter"></div>
+
+    <script>
+        const text = "Per Noi, Amore Mio ❤\nOgni bacio, ogni abbraccio, ogni momento con te è magia pura.";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+
+        window.onload = typeWriter; // PARTE SUBITO
+    </script>
+
+    <!-- PETALI + CUORI + ROSE + FIORI -->
+    <script>
+        function createFallingElement() {
+            const element = document.createElement('div');
+            element.className = 'falling';
+
+            const symbols = ['🌸', '💮', '🌺', '🌹', '❤️', '💗', '💖'];
+            element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+            element.style.left = Math.random() * window.innerWidth + 'px';
+            element.style.animationDuration = (Math.random() * 4 + 6) + 's';
+
+            document.body.appendChild(element);
+
+            setTimeout(() => element.remove(), 10000);
+        }
+
+        setInterval(createFallingElement, 300);
+    </script>
+
+    <!-- SLIDESHOW -->
+    <div class="slideshow">
+        <img src="images/f1.jpeg">
+        <img src="images/f2.jpeg">
+        <img src="images/f3.jpeg">
+        <img src="images/f4.jpeg">
+    </div>
+
+    <!-- GALLERIA -->
+    <div class="gallery">
+        <div class="photo-card"><img src="images/f1.jpeg"></div>
+        <div class="photo-card"><img src="images/f2.jpeg"></div>
+        <div class="photo-card"><img src="images/f3.jpeg"></div>
+        <div class="photo-card"><img src="images/f4.jpeg"></div>
+        <div class="photo-card"><img src="images/f5.jpeg"></div>
+        <div class="photo-card"><img src="images/f6.jpeg"></div>
+    </div>
+
+    <button class="love-button" onclick="revealMessage()">Clicca per la sorpresa 💌</button>
+
+    <div id="specialMessage">
+        Sei il mio mondo, il mio respiro, il mio sempre.  
+        Grazie per ogni bacio, ogni sorriso, ogni attimo. 🌙💖
+    </div>
+
+    <script>
+        function revealMessage() {
+            document.getElementById('specialMessage').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
